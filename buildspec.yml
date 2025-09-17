@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.13
+    commands:
+      - pip install --upgrade pip
+  build:
+    commands:
+      - echo "Zipping Lambda function with dependencies..."
+      - pip install -r requirements.txt -t ./package
+      - cp -r src/* ./package/
+      - cd package
+      - zip -r ../function.zip .
+
+artifacts:
+  files:
+    - function.zip
