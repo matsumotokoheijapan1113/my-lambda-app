@@ -5,15 +5,22 @@ phases:
     runtime-versions:
       python: 3.9
     commands:
+      - echo "=== Install phase start ==="
       - pip install --upgrade pip
   build:
     commands:
-      - echo "Zipping Lambda function with dependencies..."
+      - echo "=== Build phase start ==="
+      - mkdir -p package
+      # 依存ライブラリをインストール
       - pip install -r requirements.txt -t ./package
+      # ソースコードをコピー
       - cp src/*.py ./package/
+      # ZIP を作成
       - cd package
-      - zip -r ../output.zip .
+      - zip -r ../function.zip .
       - cd ..
+      - echo "=== Build phase finished ==="
 artifacts:
   files:
-    - output.zip
+    - function.zip
+  discard-paths: yes
