@@ -12,7 +12,8 @@ phases:
       - pip install -r requirements.txt -t ./package
       - cp src/*.py ./package/
       - cd package
-      - zip -r ../function.zip .
+      - zip -r ../output.zip .
+      - cd ..
 artifacts:
   files:
-    - function.zip
+    - output.zip
