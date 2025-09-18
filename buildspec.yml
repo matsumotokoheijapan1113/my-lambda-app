@@ -10,10 +10,9 @@ phases:
     commands:
       - echo "Zipping Lambda function with dependencies..."
       - pip install -r requirements.txt -t ./package
-      - cp -r src/* ./package/
+      - cp src/*.py ./package/
       - cd package
       - zip -r ../function.zip .
-
 artifacts:
   files:
     - function.zip
