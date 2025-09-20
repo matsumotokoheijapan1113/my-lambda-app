@@ -1,18 +1,10 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      python: 3.9
-    commands:
-      - echo "=== Install phase start ==="
-      - pip install --upgrade pip
   build:
     commands:
       - echo "=== Build phase start ==="
       - mkdir -p package
-      # 依存ライブラリをインストール
-      - pip install -r requirements.txt -t ./package
       # ソースコードをコピー
       - cp src/*.py ./package/
       # ZIP を作成
@@ -20,6 +12,7 @@ phases:
       - zip -r ../function.zip .
       - cd ..
       - echo "=== Build phase finished ==="
+
 artifacts:
   files:
     - function.zip
