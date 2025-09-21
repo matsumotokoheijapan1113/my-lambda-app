@@ -5,10 +5,11 @@ phases:
     commands:
       - echo "=== Build phase start ==="
       - cd src
-      - zip -r ../output.zip .
+      - zip -r ../function.zip .   # output.zip → function.zip に修正
       - cd ..
-      - echo "=== Build phase finis ==="
+      - echo "=== Build phase finished ==="
 
 artifacts:
   files:
-    - output.zip
+    - function.zip                # Lambda に渡すのはこのZIP
+  discard-paths: yes
