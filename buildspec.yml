@@ -4,14 +4,11 @@ phases:
   build:
     commands:
       - echo "=== Build phase start ==="
-      - mkdir -p package
-      # src以下をまるごとコピー
-      - cp -r src/* ./package/
-      # ZIPを作成
-      - cd package
+      # src 内のコードをそのまま zip 化
+      - cd src
       - zip -r ../function.zip .
       - cd ..
-      - echo "=== Build phase  ==="
+      - echo "=== Build phase finished ==="
 
 artifacts:
   files:
