@@ -7,7 +7,7 @@ phases:
       - cd src
       - zip -r ../output.zip .
       - cd ..
-      - echo "=== Build phase finished ==="
+      - echo "=== Build phase finis ==="
 
 artifacts:
   files:
