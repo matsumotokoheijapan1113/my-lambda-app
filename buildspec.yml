@@ -4,12 +4,10 @@ phases:
   build:
     commands:
       - echo "=== Build phase start ==="
-      - cd src
-      - zip -r ../function.zip .
-      - cd ..
+      - cp src/*.py .
       - echo "=== Build phase finished ==="
 
 artifacts:
   files:
-    - function.zip   # ← この zip がそのまま S3 に保存される
+    - lambda_function.py
   discard-paths: yes
