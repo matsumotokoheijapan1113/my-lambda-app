@@ -5,9 +5,9 @@ phases:
     commands:
       - echo "=== Build phase start ==="
       - mkdir -p package
-      # ソースコードをコピー
-      - cp src/*.py ./package/
-      # ZIP を作成
+      # src以下をまるごとコピー
+      - cp -r src/* ./package/
+      # ZIPを作成
       - cd package
       - zip -r ../function.zip .
       - cd ..
