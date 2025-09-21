@@ -4,13 +4,11 @@ phases:
   build:
     commands:
       - echo "=== Build phase start ==="
-      # src 内のコードをそのまま zip 化
       - cd src
-      - zip -r ../function.zip .
+      - zip -r ../output.zip .
       - cd ..
       - echo "=== Build phase finished ==="
 
 artifacts:
   files:
-    - function.zip
-  discard-paths: yes
+    - output.zip
