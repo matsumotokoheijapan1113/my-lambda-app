@@ -4,18 +4,18 @@ phases:
   build:
     commands:
       - echo "=== Build phase start ==="
-      # src 配下の .py をルートにコピー（CodePipeline成果物用）
-      - cp src/lambda_function.py .
+      # TestLambda_with_Proxy_Integration/src 配下のファイルをコピー
+      - cp TestLambda_with_Proxy_Integration/src/lambda_function.py .
       - echo "=== Build phase finished ==="
 
-      # 日付付き & latest 用に zip を作成して S3 にアップロード（監査・ロールバック
+      # 日付付き & latest 用に zip を作成して S3 にアップロード
       - DATE=$(date +%Y%m%d-%H%M)
-      - zip -j lambda_function.zip src/lambda_function.py
-      - aws s3 cp lambda_function.zip s3://lambda-zip-version/releases/$DATE/lambda_function.zip
-      - aws s3 cp lambda_function.zip s3://lambda-zip-version/releases/latest/lambda_function.zip
+      - zip -j lambda_function.zip TestLambda_with_Proxy_Integration/src/lambda_function.py
+      - aws s3 cp lambda_function.zip s3://lambda-zip-version/TestLambda_with_Proxy_Integration/releases/$DATE/lambda_function.zip
+      - aws s3 cp lambda_function.zip s3://lambda-zip-version/TestLambda_with_Proxy_Integration/releases/latest/lambda_function.zip
 
 artifacts:
   files:
-    - lambda_function.py   # ← Lambda に渡すのは py 単体
+    - lambda_function.py
   base-directory: .
   discard-paths: yes
