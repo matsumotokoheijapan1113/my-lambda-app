@@ -5,7 +5,7 @@ phases:
     commands:
       - echo "=== Build phase start ==="
       - cp src/*.py .
-      - echo "=== Build phase finish ==="
+      - echo "=== Build phase fini ==="
 
 artifacts:
   files:
