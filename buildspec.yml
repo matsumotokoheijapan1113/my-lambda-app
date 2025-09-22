@@ -4,8 +4,13 @@ phases:
   build:
     commands:
       - echo "=== Build phase start ==="
-      - cp src/*.py .
-      - echo "=== Build phase finish ==="
+      - zip -j lambda_function.zip src/*.py
+      - echo "=== Build phase finished ==="
+      # 日付付きフォルダにコピー
+      - DATE=$(date +%Y%m%d-%H%M)
+      - aws s3 cp lambda_function.zip s3://lambda-zip-version/releases/$DATE/lambda_function.zip
+      # latest にもコピー
+      - aws s3 cp lambda_function.zip s3://lambda-zip-version/releases/latest/lambda_function.zip
 
 artifacts:
   files:
