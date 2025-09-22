@@ -4,10 +4,9 @@ phases:
   build:
     commands:
       - echo "=== Build phase start ==="
-      # src 配下のファイルをまとめて固定名の zip にする
-      - zip -j lambda_function.zip src/*.py
-      - echo "=== Build phase finished ==="
-      
+      - cp src/*.py .
+      - echo "=== Build phase fini ==="
+
 artifacts:
   files:
     - lambda_function.py
