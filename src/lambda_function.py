@@ -2,6 +2,8 @@ import os
 import datetime
 import psycopg2
 import json
+from aws_xray_sdk.core import patch_all   # ← ここで import
+patch_all() 
 
 def lambda_handler(event, context):
     print("Event:", event)
@@ -17,10 +19,8 @@ def lambda_handler(event, context):
     current_year = today.year
 
     # リクエストボディを取得
-    # json.loads() は JSON文字列(例:HTTPリクエスト本文から：'body': '{"mode":"all"}')を「Pythonが扱えるデータ構造」変換するための魔法の変換関数
-    body = json.loads(event.get("body", "{}"))
+    body = event.get("body", {})
     mode = body.get("mode")
-
     try:
         conn = psycopg2.connect(
             host=db_host,
@@ -111,21 +111,11 @@ def lambda_handler(event, context):
 
         return {
             "statusCode": 200,
-            "headers": {
-            "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-            "Access-Control-Allow-Headers": "Content-Type",
-             "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-            },
             "body": json.dumps(events, ensure_ascii=False)
         }
 
     except Exception as e:
         return {
             "statusCode": 500,
-            "headers": {
-            "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-             },
             "body": json.dumps({"error": str(e)})
         }
