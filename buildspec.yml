@@ -10,5 +10,5 @@ phases:
 artifacts:
   files:
     - lambda_function.py
-  base-directory: src 
-  discard-paths: no
+  base-directory: .
+  discard-paths: yes
