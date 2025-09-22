@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     current_year = today.year
 
     # リクエストボディを取得
-    # json.loads() は JSON文字列(例:HTTPリクエスト本文から：'body': '{"mode":"all"}')を「Pythonが扱えるデータ構造」に変換するための魔法の変換関数
+    # json.loads() は JSON文字列(例:HTTPリクエスト本文から：'body': '{"mode":"all"}')を「Pythonが扱えるデータ構造」変換するための魔法の変換関数
     body = json.loads(event.get("body", "{}"))
     mode = body.get("mode")
 
