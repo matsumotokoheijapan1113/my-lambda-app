@@ -19,3 +19,4 @@ artifacts:
     - lambda_function.py   # ← Lambda に渡すのは py 単体
   base-directory: .
   discard-paths: yes
+  name: artifacts/lambda_build.zip
